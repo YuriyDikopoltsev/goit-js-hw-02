@@ -1,16 +1,23 @@
-const userPassword = 'jqueryismyjam';
+function findLongestWord(string = '') {
+  let maxWordLength = 0;
+  let maxWord = '';
+  let wordLength = 0;
 
-const ADMIN_PASSWORD = 'jqueryismyjam';
-
-const CANCELED_BY_USER = 'Отменено пользователем!';
-const ACCESS_IS_ALLOWED = 'Добро пожаловать!';
-let ACCESS_DENIED = 'Доступ запрещен, неверный пароль!';
-if (userPassword === 'jqueryismyjam') {
-  message = 'Добро пожаловать!';
-} else if (userPassword === null) {
-  message = 'Отменено пользователем!';
-} else {
-  message = 'Доступ запрещен, неверный пароль!';
+  for (let i = 0; i < string.split(' ').length; i += 1) {
+    wordLength = string.split(' ')[i].length;
+    if (wordLength > maxWordLength) {
+      maxWordLength = wordLength;
+      maxWord = string.split(' ')[i];
+    }
+  }
+  return maxWord;
 }
-console.log(message);
-alert(message);
+
+console.log(findLongestWord('The quick brown fox jumped over the lazy dog'));
+// 'jumped'
+
+console.log(findLongestWord('Google do a roll'));
+// 'Google'
+
+console.log(findLongestWord('May the force be with you'));
+// 'force'

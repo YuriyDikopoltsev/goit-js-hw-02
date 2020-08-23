@@ -1,47 +1,24 @@
-const countryName = null;
-const NO_DELIVERY = 'В выбранную страну доставка недоступна.';
-const CHINA = 'Китай';
-const AUSTRALIA = 'Австралия';
-const INDIA = 'Индия';
-const JAMAICA = 'Ямайка';
-price = 0;
-let country;
-if (countryName === null) {
-  message = CANCELED_BY_USER;
-} else {
-  country = countryName[0].toUpperCase() + countryName.slice(1).toLowerCase();
+function checkForSpam(str) {
+  'use strict';
+  let checkingWord = ' ';
+  let spamWord1 = 'spam';
+  let spamWord2 = 'sale';
 
-  switch (country) {
-    case CHINA:
-      price = 100;
-      break;
-    case AUSTRALIA:
-      price = 170;
-      break;
-    case INDIA:
-      price = 80;
-      break;
-    case JAMAICA:
-      price = 120;
-      break;
-    default:
-      message = 'В выбранную страну доставка недоступна.';
+  for (let i = 0; i < str.split(' ').length; i += 1) {
+    // console.log(str.split(' ')[i]);
+    checkingWord = str.split(' ')[i];
+    checkingWord = checkingWord.toLowerCase();
+    // console.log(checkingWord);
+    if (checkingWord.includes(spamWord1) || checkingWord.includes(spamWord2)) {
+      return true;
+    }
   }
+  return false;
 }
-if (price != 0) {
-  message = `Доставка в ${country} будет стоить ${price} кредитов`;
-}
-Number('25px');
-console.log(message);
+console.log(checkForSpam('Latest technology news')); // false
 
-//если countryName равно "КитаЙ"
-// то значение message будет равно
-// 'Доставка в Китай будет стоить 100 кредитов'
+console.log(checkForSpam('JavaScript weekly newsletter')); // false
 
-//если countryName равно null
-// то значение message будет равно
-// 'Отменено пользователем!'
+console.log(checkForSpam('Get best sale offers now!')); // true
 
-//если countryName равно "Чили"
-// то значение message будет равно
-// 'В выбранную страну доставка недоступна.'
+console.log(checkForSpam('[SPAM] How to earn fast money?')); // true
